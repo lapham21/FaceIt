@@ -12,7 +12,7 @@ import UIKit
 class FaceView: UIView
 {
     
-    // PROPERTIES, STRUCTS AND ENUMS
+    // PROPERTIES, STRUCTS, ENUMS AND PUBLIC METHODS
 	
 	@IBInspectable
 	var scale: CGFloat = 0.90 { didSet { setNeedsDisplay() } }
@@ -26,6 +26,17 @@ class FaceView: UIView
 	var color: UIColor = UIColor.blueColor() { didSet { setNeedsDisplay() } }
 	@IBInspectable
 	var lineWidth: CGFloat = 5.0 { didSet { setNeedsDisplay() } }
+	
+	
+	func changeScale(recognizer: UIPinchGestureRecognizer) {
+		switch recognizer.state {
+		case .Changed, .Ended:
+			scale *= recognizer.scale
+			recognizer.scale = 1.0
+		default:
+			break
+		}
+	}
 	
     private var skullRadius: CGFloat {
         return min(bounds.size.width, bounds.size.height) / 2 * scale
