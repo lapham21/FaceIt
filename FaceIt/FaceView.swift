@@ -27,7 +27,6 @@ class FaceView: UIView
 	@IBInspectable
 	var lineWidth: CGFloat = 5.0 { didSet { setNeedsDisplay() } }
 	
-	
 	func changeScale(recognizer: UIPinchGestureRecognizer) {
 		switch recognizer.state {
 		case .Changed, .Ended:

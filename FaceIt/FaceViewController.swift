@@ -39,27 +39,27 @@ class FaceViewController: UIViewController
 			sadderSwipeGestureRecognizer.direction = .Down
 			faceView.addGestureRecognizer(sadderSwipeGestureRecognizer)
 			
+			faceView.addGestureRecognizer(UIRotationGestureRecognizer(
+				target: self, action: #selector(FaceViewController.changeBrows(_:))
+			))
+			
 			updateUI()
 			
 		}
 	}
 	
-	@IBAction func toggleEyes(recognizer: UITapGestureRecognizer) {
-		if recognizer.state == .Ended {
+	private func updateUI()
+	{
+		// EmotionsViewController prepares the faceView before the faceView outlet is set. Therefor need to wait until faceView is set to update faceView
+		if faceView != nil {
 			switch expression.eyes {
-			case .Open: expression.eyes = .Closed
-			case .Closed: expression.eyes = .Open
-			case .Squinting: break
+			case .Open: faceView.eyesOpen = true
+			case .Closed: faceView.eyesOpen = false
+			case .Squinting: faceView.eyesOpen = false
 			}
+			faceView.mouthCurvature = mouthCurvatures[expression.mouth] ?? 0.0
+			faceView.eyeBrowTilt = eyeBrowTilts[expression.eyeBrows] ?? 0.0
 		}
-	}
-	
-	func increaseHappiness() {
-		expression.mouth = expression.mouth.happierMouth()
-	}
-	
-	func decreaseHappiness() {
-		expression.mouth = expression.mouth.sadderMouth()
 	}
 	
 	private var mouthCurvatures = [
@@ -76,15 +76,46 @@ class FaceViewController: UIViewController
 		.Normal: 0.0
 	]
 	
-	private func updateUI()
-	{
-		switch expression.eyes {
-		case .Open: faceView.eyesOpen = true
-		case .Closed: faceView.eyesOpen = false
-		case .Squinting: faceView.eyesOpen = false
+	func increaseHappiness() {
+		expression.mouth = expression.mouth.happierMouth()
+	}
+	
+	func decreaseHappiness() {
+		expression.mouth = expression.mouth.sadderMouth()
+	}
+	
+	@IBAction func toggleEyes(recognizer: UITapGestureRecognizer) {
+		if recognizer.state == .Ended {
+			switch expression.eyes {
+			case .Open: expression.eyes = .Closed
+			case .Closed: expression.eyes = .Open
+			case .Squinting: break
+			}
 		}
-		faceView.mouthCurvature = mouthCurvatures[expression.mouth] ?? 0.0
-		faceView.eyeBrowTilt = eyeBrowTilts[expression.eyeBrows] ?? 0.0
+	}
+	
+	func changeBrows(recognizer: UIRotationGestureRecognizer) {
+		switch recognizer.state {
+		case .Changed, .Ended:
+			if recognizer.rotation > CGFloat(M_PI/4) {
+				expression.eyeBrows = expression.eyeBrows.moreRelaxedBrow()
+				recognizer.rotation = 0.0
+			} else if recognizer.rotation < -CGFloat(M_PI/4) {
+				expression.eyeBrows = expression.eyeBrows.moreFurrowedBrow()
+				recognizer.rotation = 0.0
+			}
+		default:
+			break
+		}
 	}
 }
+
+
+
+
+
+
+
+
+
 

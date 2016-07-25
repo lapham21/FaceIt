@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		692533A31D4062AF00D5EF84 /* EmotionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692533A21D4062AF00D5EF84 /* EmotionsViewController.swift */; };
 		69314DFC1D36D9DF00556468 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69314DFB1D36D9DF00556468 /* AppDelegate.swift */; };
 		69314DFE1D36D9DF00556468 /* FaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69314DFD1D36D9DF00556468 /* FaceViewController.swift */; };
 		69314E011D36D9DF00556468 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69314DFF1D36D9DF00556468 /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		692533A21D4062AF00D5EF84 /* EmotionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmotionsViewController.swift; sourceTree = "<group>"; };
 		69314DF81D36D9DF00556468 /* FaceIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FaceIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		69314DFB1D36D9DF00556468 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		69314DFD1D36D9DF00556468 /* FaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceViewController.swift; sourceTree = "<group>"; };
@@ -58,11 +60,12 @@
 		69314DFA1D36D9DF00556468 /* FaceIt */ = {
 			isa = PBXGroup;
 			children = (
-				69314E0D1D36DA0900556468 /* Supporting Files */,
+				69314DFF1D36D9DF00556468 /* Main.storyboard */,
 				69C5C9901D38711C00576E84 /* FacialExpression.swift */,
 				69314DFD1D36D9DF00556468 /* FaceViewController.swift */,
-				69314DFF1D36D9DF00556468 /* Main.storyboard */,
 				69314E0E1D36DABF00556468 /* FaceView.swift */,
+				692533A21D4062AF00D5EF84 /* EmotionsViewController.swift */,
+				69314E0D1D36DA0900556468 /* Supporting Files */,
 			);
 			path = FaceIt;
 			sourceTree = "<group>";
@@ -152,6 +155,7 @@
 			files = (
 				69314DFE1D36D9DF00556468 /* FaceViewController.swift in Sources */,
 				69C5C9911D38711C00576E84 /* FacialExpression.swift in Sources */,
+				692533A31D4062AF00D5EF84 /* EmotionsViewController.swift in Sources */,
 				69314DFC1D36D9DF00556468 /* AppDelegate.swift in Sources */,
 				69314E0F1D36DABF00556468 /* FaceView.swift in Sources */,
 			);
